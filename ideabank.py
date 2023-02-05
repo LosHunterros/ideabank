@@ -9,9 +9,16 @@ def clear():
 
 clear()
 
-ideas_list = []
+new_idea = ""
+idea_list = []
 
-while True:
+while new_idea.lower() != 'quit':
     clear()
     print("Welcom to Idea Bank!\n")
-    ideas_list.append(input("What is your new idea? "))
+
+    for i, idea in enumerate(idea_list):
+        print(f"{i+1}. {idea}")
+    
+    print("\nType 'Quit' to finish")
+    new_idea = input("\nWhat is your new idea? ")
+    idea_list.append(new_idea)
