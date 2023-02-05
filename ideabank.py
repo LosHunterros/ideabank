@@ -1,4 +1,5 @@
 from os import system, name
+from io import open
 
 def clear():
  
@@ -10,7 +11,10 @@ def clear():
 clear()
 
 new_idea = ""
-idea_list = []
+
+idea_file = open("ideabank/ideas.txt", mode="r", encoding="utf-8")
+idea_list = idea_file.read().splitlines()
+idea_file.close()
 
 while new_idea.lower() != 'quit':
     clear()
@@ -18,7 +22,11 @@ while new_idea.lower() != 'quit':
 
     for i, idea in enumerate(idea_list):
         print(f"{i+1}. {idea}")
-    
+
+    idea_file = open("ideabank/ideas.txt", mode="w", encoding="utf-8")
+    idea_file.write('\n'.join(idea_list))
+    idea_file.close()
+
     print("\nType 'Quit' to finish")
     new_idea = input("\nWhat is your new idea? ")
     idea_list.append(new_idea)
