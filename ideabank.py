@@ -24,10 +24,14 @@ while new_idea.lower() != 'quit':
     for i, idea in enumerate(idea_list):
         print(f"{i+1}. {idea}")
 
-    idea_file = open(idea_file_name, mode="w", encoding="utf-8")
-    idea_file.write('\n'.join(idea_list))
-    idea_file.close()
-
     print("\nType 'Quit' to finish")
+
     new_idea = input("\nWhat is your new idea? ")
-    idea_list.append(new_idea)
+
+    if new_idea[:8] == "--delete":
+        del idea_list[int(new_idea[9:])-1]
+    else:
+        idea_list.append(new_idea)
+        idea_file = open(idea_file_name, mode="w", encoding="utf-8")
+        idea_file.write('\n'.join(idea_list))
+        idea_file.close()
